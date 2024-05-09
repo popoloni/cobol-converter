@@ -12,12 +12,11 @@ def extract_code(text: str, language: str = "python") -> List[str]:
             break
         snippet = text[i : i + delimiter_length]
         if "```" == snippet:
-            if (
-                text[i + delimiter_length : i + delimiter_length + language_len]
-                == language
-            ):
+            if text[i + delimiter_length : i + delimiter_length + language_len] == language:
                 code_start = i + delimiter_length + language_len
             else:
                 text_list.append(text[code_start:i].strip())
                 code_start = -1
+    if code_start != -1:    
+        text_list.append(text[code_start:].strip())
     return text_list

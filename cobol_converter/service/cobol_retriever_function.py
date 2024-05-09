@@ -12,7 +12,7 @@ def list_cobol_files(exclusion_file_names: List[str] = []) -> Generator:
     :return: A generator yielding Path objects for COBOL files.
     :rtype: Generator[Path, None, None]
     """
-    for file in cfg.source_code_dir.rglob("*.cbl"):
+    for file in cfg.source_code_dir.rglob("*.COB"):
         if file.stem not in exclusion_file_names:
             yield file
 
@@ -22,7 +22,7 @@ def get_cobol():
     Retrieve cobol code to be converted.
     """
     files = list(list_cobol_files())
-    return "\n\n".join([f.read_text() for f in files])
+    return "\n\n".join([f.read_text(encoding='ISO-8859-1') for f in files])
 
 
 if __name__ == "__main__":

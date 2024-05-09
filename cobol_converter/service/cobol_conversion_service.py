@@ -119,7 +119,7 @@ def convert_single_file(cobol_file: Path):
     - `user_proxy`: An object representing the user proxy for chat-based interaction.
     - `conversion_manager`: An object managing the conversion process.
     """
-    cobol_code = cobol_file.read_text()
+    cobol_code = cobol_file.read_text(encoding='ISO-8859-1')
     user_proxy_message = (prompts["agents"]["userproxy"]["message"]).format(
         cobol_code=cobol_code
     )
